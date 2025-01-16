@@ -2,20 +2,272 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'MotterCorpus';
+  src: url('/fonts/MotterCorpusStd-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: 'BloggerSans';
+  src: url('/fonts/Blogger_Sans.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LifeSavers';
+  src: url('/fonts/LifeSavers-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 39 17% 98%;
+    --foreground: 84 13% 9%;
+    --card: 39 17% 98%;
+    --card-foreground: 84 13% 9%;
+    --popover: 39 17% 98%;
+    --popover-foreground: 84 13% 9%;
+    --primary: 84 13% 9%;
+    --primary-foreground: 39 17% 98%;
+    --secondary: 0 69% 55%;
+    --secondary-foreground: 39 17% 98%;
+    --muted: 39 17% 98%;
+    --muted-foreground: 84 13% 9%;
+    --accent: 0 69% 55%;
+    --accent-foreground: 39 17% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 39 17% 98%;
+    --border: 84 13% 9%;
+    --input: 84 13% 9%;
+    --ring: 84 13% 9%;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#fefaf6] text-[#181c14];
+    font-family: 'BloggerSans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'MotterCorpus', serif;
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+.animate-fadeInOut {
+  animation: fadeInOut 5s infinite;
+}
+
+/* Optimize animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeInOut {
+    animation: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Optimize animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .slide-in-right {
+    animation: none;
+  }
+}
+
+@keyframes featureCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes testimonialCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes benefitCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes benefitCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes highlightCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.benefit-card {
+  opacity: 0;
+}
+
+.highlight-card {
+  opacity: 0;
+}
+
+/* Individual animation delays */
+.benefit-card-0 {
+  animation: benefitCardAppear 0.5s ease-out forwards 0ms;
+}
+
+.benefit-card-1 {
+  animation: benefitCardAppear 0.5s ease-out forwards 100ms;
+}
+
+.benefit-card-2 {
+  animation: benefitCardAppear 0.5s ease-out forwards 200ms;
+}
+
+.highlight-card-0 {
+  animation: highlightCardAppear 0.5s ease-out forwards 300ms;
+}
+
+.highlight-card-1 {
+  animation: highlightCardAppear 0.5s ease-out forwards 400ms;
+}
+
+.highlight-card-2 {
+  animation: highlightCardAppear 0.5s ease-out forwards 500ms;
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .benefit-card,
+  .highlight-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; transform: translateY(10px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  20%, 80% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient {
+    animation: none;
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  20%, 80% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .border-3 {
+    border-width: 3px;
+  }
 }
